@@ -128,6 +128,7 @@ function _per-directory-history-set-directory-history() {
 }
 function _per-directory-history-set-global-history() {
   if [[ $_per_directory_history_is_global == false ]]; then
+    echo "Global"
     fc -AI $_per_directory_history_directory
     local original_histsize=$HISTSIZE
     HISTSIZE=0
@@ -147,5 +148,5 @@ add-zsh-hook zshaddhistory _per-directory-history-addhistory
 
 #start in directory mode
 mkdir -p ${_per_directory_history_directory:h}
-_per_directory_history_is_global=true
-_per-directory-history-set-directory-history
+_per_directory_history_is_global=false
+_per-directory-history-set-global-history
